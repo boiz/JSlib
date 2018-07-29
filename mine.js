@@ -1,7 +1,7 @@
 
 /*Last modified Apr 2018*/
-let getXHR=(url,callback)=>{
-	let xml=new XMLHttpRequest;
+const getXHR=(url,callback)=>{
+	const xml=new XMLHttpRequest;
 	xml.open("get",url);
 	xml.send();
 	xml.responseType="json";
@@ -32,3 +32,13 @@ let postXhr=obj=>{
 	}
 }
 
+/*Last modified 7.2018*/
+const postForm=obj=>{
+	const xml=new XMLHttpRequest;
+	xml.open("post",obj.url);
+	xml.responseType="json";
+	xml.send((obj.data));
+	xml.onload=()=>{
+		if(obj.callback) obj.callback(xml.response);
+	}
+}
