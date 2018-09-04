@@ -32,12 +32,14 @@ let postXhr=obj=>{
 	}
 }
 
-/*Last modified 7.2018*/
+/*Sep 2 2018*/
 const postForm=obj=>{
 	const xml=new XMLHttpRequest;
+	const fd=new FormData;
+	for(key in obj.data) fd.append(key,obj.data[key]);
 	xml.open("post",obj.url);
 	xml.responseType="json";
-	xml.send((obj.data));
+	xml.send(fd);
 	xml.onload=()=>{
 		if(obj.callback) obj.callback(xml.response);
 	}
